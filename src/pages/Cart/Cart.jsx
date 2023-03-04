@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartCard } from '../../components/CartCard/CartCard';
+import { CartContext } from '../../context/CartContext';
 
 export const Cart = () => {
+  const {product,setProduct} = useContext(CartContext);
+
+  const handleDelete=(id)=>{
+    let updateProduct= product.filter((prod)=> prod.id!==id);
+    setProduct(updateProduct)
+  };
+
+
+  const totalAmount= product?.reduce((prev,next)=> prev+ (next.price*next.quantity),0);
   return (
-    <div>Cart</div>
+    <div>
+       <h1>Shopping Cart</h1>
+       <div>
+       {product.map((product)=>
+        <CartCard key={product.id} el={product} handleDelete={handleDelete}/>
+        
+        )}
+      </div>
+      <div>
+        <h3 style={{padding:'20px 0px 0px 10px', borderTop:'2px solid grey'}}>Total Amount :{totalAmount} </h3>
+      </div>
+    </div>
   )
 }
