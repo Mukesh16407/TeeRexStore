@@ -12,7 +12,7 @@ export const Product = () => {
 
   const getAlldata=async()=>{
     try {
-      fetch(`http://localhost:3001/productdata`)
+      fetch(`https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json`)
       .then((d)=>d.json())
       .then((res)=>{
         //console.log("response", res);
